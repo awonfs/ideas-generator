@@ -19,10 +19,8 @@ export default function RootLayout({
     <ClerkProvider>
       <html lang="en">
         <body>
-          <div>
-            <Header />
-            {children}
-          </div>
+          <Header />
+          <div className="container mx-auto">{children}</div>
         </body>
       </html>
     </ClerkProvider>

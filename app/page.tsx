@@ -30,7 +30,7 @@ export default function Home() {
         </svg>
       </Link>
 
-      <p className="text-lg font-normal text-gray-500 lg:text-xl dark:text-gray-400">
+      <p className="text-md font-normal text-gray-500 dark:text-gray-400">
         Here at IdeaGenerator we focus on bringing you with the power of AI help
         find you new hobbies, ideas, recipes and so much more!
       </p>
