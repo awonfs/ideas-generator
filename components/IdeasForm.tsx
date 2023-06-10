@@ -1,4 +1,13 @@
-import React from "react";
+"use client";
+import { z } from "zod";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+
+const formSchema = z.object({
+  prompt: z.string().min(1, "This field cant be empty").max(1000),
+});
+
+type Input = z.infer<typeof formSchema>;
 
 type FormProps = {
   label: string;
@@ -6,8 +15,25 @@ type FormProps = {
 };
 
 function IdeasForm({ label, placeholder }: FormProps) {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm<Input>({
+    resolver: zodResolver(formSchema),
+  });
+
+  function onSubmit(data: Input) {
+    console.log(data);
+    reset();
+  }
+
   return (
-    <form className="bg-gray-600 p-8 rounded-md w-1/2 h-2/3 flex flex-col justify-evenly">
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      className="bg-gray-600 p-8 rounded-md w-1/2 h-2/3 flex flex-col justify-evenly"
+    >
       <label
         htmlFor="prompt"
         className="block mb-4 text-lg font-medium text-white"
@@ -19,6 +45,7 @@ function IdeasForm({ label, placeholder }: FormProps) {
         className="block w-full text-sm rounded-lg border  bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500"
         placeholder={placeholder}
         rows={9}
+        {...register("prompt")}
       ></textarea>
       <button
         type="submit"
@@ -26,6 +53,9 @@ function IdeasForm({ label, placeholder }: FormProps) {
       >
         Submit
       </button>
+      {errors.prompt && (
+        <span className="text-red-500 text-sm">{errors.prompt.message}</span>
+      )}
     </form>
   );
 }
