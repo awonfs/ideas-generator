@@ -18,10 +18,12 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en">
-        <div>
-          <Header />
-          {children}
-        </div>
+        <body>
+          <div>
+            <Header />
+            {children}
+          </div>
+        </body>
       </html>
     </ClerkProvider>
   );
