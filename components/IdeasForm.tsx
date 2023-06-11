@@ -2,6 +2,7 @@
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import axios from "axios";
 
 const formSchema = z.object({
   prompt: z.string().min(1, "This field cant be empty").max(1000),
@@ -24,9 +25,17 @@ function IdeasForm({ label, placeholder }: FormProps) {
     resolver: zodResolver(formSchema),
   });
 
-  function onSubmit(data: Input) {
-    console.log(data);
-    reset();
+  async function onSubmit(data: Input) {
+    try {
+      const response = await axios.post(
+        "http://localhost:3000/api/generate",
+        data
+      );
+      console.log(response.data);
+      reset();
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   return (
