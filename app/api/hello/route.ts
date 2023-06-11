@@ -1,4 +1,6 @@
 import { NextResponse } from "next/server";
+import { auth } from "@clerk/nextjs";
 export async function GET(request: Request) {
-  return NextResponse.json({ hello: "world" });
+  const { userId } = auth();
+  return NextResponse.json({ hello: "world", userId });
 }
