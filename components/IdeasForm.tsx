@@ -32,7 +32,7 @@ function IdeasForm({ label, placeholder }: FormProps) {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="bg-gray-600 p-8 rounded-md w-1/2 h-2/3 flex flex-col justify-evenly"
+      className="bg-gray-600 p-8 rounded-md w-1/2 h-1/2 flex flex-col justify-evenly"
     >
       <label
         htmlFor="prompt"
@@ -44,7 +44,7 @@ function IdeasForm({ label, placeholder }: FormProps) {
         id="prompt"
         className="block w-full text-sm rounded-lg border  bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500"
         placeholder={placeholder}
-        rows={9}
+        rows={6}
         {...register("prompt")}
       ></textarea>
       <button
