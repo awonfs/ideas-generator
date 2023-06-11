@@ -48,7 +48,7 @@ function IdeasForm({ label, placeholder }: FormProps) {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="bg-gray-600 p-8 rounded-md w-1/2 h-1/2 flex flex-col justify-evenly"
+      className="bg-gray-600 shadow-2xl p-8 rounded-md w-1/2 h-1/2 flex flex-col justify-evenly"
     >
       <label
         htmlFor="prompt"

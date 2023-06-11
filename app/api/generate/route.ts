@@ -3,7 +3,6 @@ import { NextResponse } from "next/server";
 import { auth } from "@clerk/nextjs";
 import { PrismaClient } from "@prisma/client";
 
-// TODO: Add prisma client here
 const prisma = new PrismaClient();
 
 const configuration = new Configuration({
