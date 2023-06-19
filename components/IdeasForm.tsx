@@ -5,7 +5,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import axios from "axios";
 import Spinner from "@/components/Spinner";
 import { useState } from "react";
-import { atom } from "jotai";
+import { useAtom } from "jotai";
+import { responseFromPromptAtom } from "@/atoms/atoms";
 
 const formSchema = z.object({
   prompt: z.string().min(1, "This field cant be empty").max(1000),
@@ -20,6 +21,7 @@ type FormProps = {
 
 function IdeasForm({ label, placeholder }: FormProps) {
   const [isLoading, setIsLoading] = useState(false);
+  const [, setResponseFromPrompt] = useAtom(responseFromPromptAtom);
 
   const {
     register,
@@ -31,14 +33,14 @@ function IdeasForm({ label, placeholder }: FormProps) {
   });
 
   async function onSubmit(data: Input) {
-    setIsLoading(true); // start loading
+    setIsLoading(true);
     try {
       const response = await axios.post(
         "http://localhost:3000/api/generate",
         data
       );
-      const responseAtom = atom(response.data);
-      console.log(responseAtom);
+      setResponseFromPrompt(response.data.text);
+      console.log(responseFromPromptAtom);
     } catch (error) {
       console.error(error);
     } finally {
