@@ -40,7 +40,6 @@ function IdeasForm({ label, placeholder }: FormProps) {
         data
       );
       setResponseFromPrompt(response.data.text);
-      console.log(responseFromPromptAtom);
     } catch (error) {
       console.error(error);
     } finally {
