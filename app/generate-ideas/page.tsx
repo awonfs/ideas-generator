@@ -2,6 +2,7 @@
 import IdeasForm from "@/components/IdeasForm";
 import { useAtom } from "jotai";
 import { responseFromPromptAtom } from "@/atoms/atoms";
+import Typewriter from "@/components/Typewriter";
 
 function Page() {
   const [responseFromPrompt] = useAtom(responseFromPromptAtom);
@@ -14,9 +15,7 @@ function Page() {
         placeholder="Ideas for new recipes, hobbies etc..."
       />
       <div className="flex flex-col gap-2">
-        {responseFromPrompt && (
-          <p className="text-lg font-medium">{responseFromPrompt}</p>
-        )}
+        {responseFromPrompt && <Typewriter text={responseFromPrompt} />}
       </div>
     </main>
   );
