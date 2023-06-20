@@ -2,9 +2,21 @@
 import { UserButton, SignInButton } from "@clerk/nextjs";
 import { useUser } from "@clerk/nextjs";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { responseFromPromptAtom } from "@/atoms/atoms";
+import { useAtom } from "jotai";
 
 function Header() {
   const { isSignedIn } = useUser();
+  const router = useRouter();
+  const [responseFromPrompt, setResponseFromPrompt] = useAtom(
+    responseFromPromptAtom
+  );
+
+  function handleOnClick() {
+    router.push("/generate-ideas");
+    setResponseFromPrompt(null);
+  }
 
   return (
     <nav className="bg-white border-gray-200 dark:bg-gray-900">
@@ -28,13 +40,13 @@ function Header() {
             {isSignedIn ? (
               <>
                 <li>
-                  <a
-                    href="/generate-ideas"
+                  <button
+                    onClick={handleOnClick}
                     className="block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white md:dark:text-blue-500"
                     aria-current="page"
                   >
                     Generate ideas
-                  </a>
+                  </button>
                 </li>
                 <li>
                   <UserButton afterSignOutUrl="/" />

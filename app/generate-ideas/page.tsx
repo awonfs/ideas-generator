@@ -1,13 +1,10 @@
 "use client";
-import { useRouter } from "next/navigation";
 import IdeasForm from "@/components/IdeasForm";
 import { useAtom } from "jotai";
 import { responseFromPromptAtom } from "@/atoms/atoms";
 import Typewriter from "@/components/Typewriter";
 
 function Page() {
-  const router = useRouter();
-
   const [responseFromPrompt] = useAtom(responseFromPromptAtom);
   return (
     <main className="flex h-screen flex-col items-center mt-10 gap-4">
