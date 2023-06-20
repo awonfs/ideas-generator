@@ -16,7 +16,7 @@ function Page() {
         label="Write your ideas down here &darr;"
         placeholder="Ideas for new recipes, hobbies etc..."
       />
-      <div className="flex flex-col gap-2">
+      <div className="container max-w-md overflow-scroll flex flex-col gap-2">
         {responseFromPrompt && <Typewriter text={responseFromPrompt} />}
       </div>
     </main>
