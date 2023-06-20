@@ -9,9 +9,7 @@ import { useAtom } from "jotai";
 function Header() {
   const { isSignedIn } = useUser();
   const router = useRouter();
-  const [responseFromPrompt, setResponseFromPrompt] = useAtom(
-    responseFromPromptAtom
-  );
+  const [, setResponseFromPrompt] = useAtom(responseFromPromptAtom);
 
   function handleOnClick() {
     router.push("/generate-ideas");
