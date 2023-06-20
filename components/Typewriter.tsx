@@ -1,10 +1,12 @@
 "use client";
 import React, { useState, useEffect, use } from "react";
-import { useRouter } from "next/navigation";
+import { useAtom } from "jotai";
+import { responseFromPromptAtom } from "@/atoms/atoms";
 
 const Typewriter = ({ text }: { text: string }) => {
   const [output, setOutput] = useState("");
   const [index, setIndex] = useState(0);
+  const [, setResponseFromPrompt] = useAtom(responseFromPromptAtom);
 
   useEffect(() => {
     if (index < text.length) {
